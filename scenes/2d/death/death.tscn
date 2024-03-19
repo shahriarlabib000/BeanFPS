@@ -1,0 +1,46 @@
+[gd_scene load_steps=2 format=3 uid="uid://cavlnu6kwjhnu"]
+
+[ext_resource type="Texture2D" uid="uid://8phm1fplv1f6" path="res://images/respawn.png" id="1_q7elu"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="container" type="CenterContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -201.0
+offset_right = 201.0
+offset_bottom = 137.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="container"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.701961, 0.701961, 0.701961, 1)
+theme_override_font_sizes/font_size = 100
+text = "WASTED"
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="tscn_reload" type="TouchScreenButton" parent="CenterContainer"]
+position = Vector2(-128, -128)
+texture_normal = ExtResource("1_q7elu")
+texture_pressed = ExtResource("1_q7elu")
+action = "tscn_reload"
