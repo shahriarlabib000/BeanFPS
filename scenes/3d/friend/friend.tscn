@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://1hrfoteie463"]
+
+[ext_resource type="Material" uid="uid://c5ekpv1qstkft" path="res://Models/SteampunkGun/Metal2.tres" id="1_3p8kk"]
+[ext_resource type="PackedScene" uid="uid://dyohoibarigxr" path="res://scenes/3d/textArea/text_area.tscn" id="2_xvy74"]
+[ext_resource type="AudioStream" uid="uid://ce8ooyaibxxdw" path="res://audio/ElectroLight.mp3" id="3_uksa7"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0o51q"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_6c53w"]
+material = ExtResource("1_3p8kk")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_y2f2a"]
+viewport_path = NodePath("SubViewport")
+
+[node name="friend" type="RigidBody3D" groups=["friend"]]
+lock_rotation = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_0o51q")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_6c53w")
+
+[node name="textArea" parent="." instance=ExtResource("2_xvy74")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.17061, 0)
+texture = SubResource("ViewportTexture_y2f2a")
+text = "titurip ip ip
+
+
+"
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_uksa7")
+autoplay = true
+doppler_tracking = 2

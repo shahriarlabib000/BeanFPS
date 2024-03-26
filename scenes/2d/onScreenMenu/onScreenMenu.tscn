@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://rphflyotpvrd"]
+
+[ext_resource type="Script" path="res://scenes/2d/onScreenMenu/onScreenMenu.gd" id="1_gsggn"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_sh778"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_vwksm"]
+
+[node name="onScreenMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gsggn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -147.0
+offset_right = 147.0
+offset_bottom = 103.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "sensitivity"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.488889
+anchor_right = 1.0
+anchor_bottom = 0.511111
+offset_bottom = -3.05176e-05
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer2"]
+layout_mode = 2
+min_value = 1.0
+value = 50.0
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+position = Vector2(684, 603)
+scale = Vector2(200, 100)
+texture_normal = SubResource("PlaceholderTexture2D_sh778")
+texture_pressed = SubResource("PlaceholderTexture2D_vwksm")
+action = "onScreenMenu"
+
+[connection signal="value_changed" from="VBoxContainer2/HSlider" to="." method="_on_h_slider_value_changed"]

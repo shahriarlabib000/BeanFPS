@@ -1,0 +1,88 @@
+[gd_scene load_steps=12 format=3 uid="uid://cyyxhoad7x5fw"]
+
+[ext_resource type="Script" path="res://scenes/3d/lift/lift.gd" id="1_8i3oc"]
+[ext_resource type="Script" path="res://scenes/3d/pole/pole.gd" id="2_xyjxh"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7ysfq"]
+size = Vector3(5, 1, 5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_tlo4a"]
+points = PackedVector3Array(-2.5, -0.5, -2.5, -2.5, 0.5, -2.5, 2.5, -0.5, -2.5, -2.5, -0.5, 2.5, -2.5, 0.5, 2.5, 2.5, 0.5, -2.5, 2.5, -0.5, 2.5, 2.5, 0.5, 2.5)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_mamc4"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_mr2oa"]
+size = Vector3(0.25, 0.3, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x0piy"]
+albedo_color = Color(0.784314, 0.392157, 0.392157, 1)
+emission_enabled = true
+emission = Color(1, 0.392157, 0.392157, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_kb73b"]
+material = SubResource("StandardMaterial3D_x0piy")
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.02
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tnrbi"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ylxg3"]
+points = PackedVector3Array(0.114264, 0.507937, 0.019029, -0.107915, -0.507937, -0.044432, -0.107915, -0.507937, 0.0507812, -0.107915, 0.507937, -0.044432, 0.0507812, -0.507937, -0.107915, 0.019029, -0.507937, 0.114264, -0.0285559, 0.507937, 0.114264, -0.044432, 0.507937, -0.107915, 0.114264, -0.507937, 0.019029, 0.0983879, 0.507937, -0.0602864, 0.0666356, 0.507937, 0.0983879, -0.107915, 0.507937, 0.0507812, -0.0761625, -0.507937, -0.0920386, 0.0507812, 0.507937, -0.107915, 0.0983879, -0.507937, 0.0666356, 0.114264, -0.507937, -0.0285559, -0.0602864, -0.507937, 0.0983879, -0.044432, -0.507937, -0.107915, -0.0920386, 0.507937, -0.0761625, 0.0666356, -0.507937, 0.0983879, 0.0983879, 0.507937, 0.0666356, -0.0285559, -0.507937, 0.114264, 0.019029, 0.507937, 0.114264, 0.114264, 0.507937, -0.0285559, -0.0602864, 0.507937, 0.0983879, 0.0983879, -0.507937, -0.0602864, -0.0920386, -0.507937, -0.0761625, -0.0761625, 0.507937, -0.0920386)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_l3ght"]
+points = PackedVector3Array(-0.125, -0.149559, -0.149559, 0.125, 0.14674, 0.14674, 0.125, 0.14674, -0.14674, -0.125, 0.149559, 0.149559, 0.125, -0.14674, 0.14674, -0.125, 0.149559, -0.149559, -0.125, -0.149559, 0.149559, 0.125, -0.14674, -0.14674)
+
+[node name="lift" type="Node3D"]
+script = ExtResource("1_8i3oc")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_7ysfq")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_tlo4a")
+
+[node name="pole" type="StaticBody3D" parent="StaticBody3D" groups=["pole"]]
+transform = Transform3D(0.770179, 0, 0.637827, 0, 1, 0, -0.637827, 0, 0.770179, -2.35952, 1.00111, 2.33792)
+script = ExtResource("2_xyjxh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D/pole"]
+mesh = SubResource("CylinderMesh_mamc4")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="StaticBody3D/pole"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.549805, 0)
+mesh = SubResource("BoxMesh_mr2oa")
+
+[node name="button" type="MeshInstance3D" parent="StaticBody3D/pole"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.131386, 0.543119, 0)
+mesh = SubResource("CylinderMesh_kb73b")
+
+[node name="Area3D" type="Area3D" parent="StaticBody3D/pole"]
+editor_description = "currently not  in use"
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/pole/Area3D"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.132, 0.543, 0)
+shape = SubResource("BoxShape3D_tnrbi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/pole"]
+transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_ylxg3")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D/pole"]
+transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 0, 0.549805, 0)
+shape = SubResource("ConvexPolygonShape3D_l3ght")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 6.02343, 0)
+light_energy = 16.0
+spot_range = 1000.0
+spot_angle_attenuation = 0.297302
+
+[connection signal="pressed" from="StaticBody3D/pole" to="." method="_on_liftPole_press"]
