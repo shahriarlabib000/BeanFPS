@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3s4xsyplm86h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wbsbm"]
+emission_enabled = true
+emission = Color(1, 0.392157, 0.392157, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_nsr7u"]
+material = SubResource("StandardMaterial3D_wbsbm")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_lbdlv"]
+
+[node name="static" type="StaticBody3D" groups=["enemy"]]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("SphereMesh_nsr7u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("SphereShape3D_lbdlv")

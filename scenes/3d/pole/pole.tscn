@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://ca4kfthded48b"]
+
+[ext_resource type="Script" path="res://scenes/3d/pole/pole.gd" id="1_6xkpq"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_mamc4"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_mr2oa"]
+size = Vector3(0.25, 0.3, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x0piy"]
+albedo_color = Color(0.784314, 0.392157, 0.392157, 1)
+emission_enabled = true
+emission = Color(0.784314, 0.392157, 0.392157, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_kb73b"]
+material = SubResource("StandardMaterial3D_x0piy")
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.02
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ylxg3"]
+points = PackedVector3Array(0.114264, 0.507937, 0.019029, -0.107915, -0.507937, -0.044432, -0.107915, -0.507937, 0.0507812, -0.107915, 0.507937, -0.044432, 0.0507812, -0.507937, -0.107915, 0.019029, -0.507937, 0.114264, -0.0285559, 0.507937, 0.114264, -0.044432, 0.507937, -0.107915, 0.114264, -0.507937, 0.019029, 0.0983879, 0.507937, -0.0602864, 0.0666356, 0.507937, 0.0983879, -0.107915, 0.507937, 0.0507812, -0.0761625, -0.507937, -0.0920386, 0.0507812, 0.507937, -0.107915, 0.0983879, -0.507937, 0.0666356, 0.114264, -0.507937, -0.0285559, -0.0602864, -0.507937, 0.0983879, -0.044432, -0.507937, -0.107915, -0.0920386, 0.507937, -0.0761625, 0.0666356, -0.507937, 0.0983879, 0.0983879, 0.507937, 0.0666356, -0.0285559, -0.507937, 0.114264, 0.019029, 0.507937, 0.114264, 0.114264, 0.507937, -0.0285559, -0.0602864, 0.507937, 0.0983879, 0.0983879, -0.507937, -0.0602864, -0.0920386, -0.507937, -0.0761625, -0.0761625, 0.507937, -0.0920386)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_l3ght"]
+points = PackedVector3Array(-0.125, -0.149559, -0.149559, 0.125, 0.14674, 0.14674, 0.125, 0.14674, -0.14674, -0.125, 0.149559, 0.149559, 0.125, -0.14674, 0.14674, -0.125, 0.149559, -0.149559, -0.125, -0.149559, 0.149559, 0.125, -0.14674, -0.14674)
+
+[node name="pole" type="StaticBody3D" groups=["pole"]]
+script = ExtResource("1_6xkpq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_mamc4")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.549805, 0)
+mesh = SubResource("BoxMesh_mr2oa")
+
+[node name="button" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.131386, 0.543119, 0)
+mesh = SubResource("CylinderMesh_kb73b")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_ylxg3")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.549805, 0)
+shape = SubResource("ConvexPolygonShape3D_l3ght")
